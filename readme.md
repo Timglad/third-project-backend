@@ -35,7 +35,7 @@ Cart item will contain 2 fields:<br>
 - get CartItems
 - get single CartItem
 - add CartItem
-- Delete CartItem
+- Delete CartItem -  also archive instead of delete
 - Update CartItem
 
 
