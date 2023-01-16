@@ -19,7 +19,7 @@ an api written in django using djangorestframework
 the api will include:
 
 ## Products
-Product will have a name, description and image
+Product will have a name, description price and image
 - get products
 - add product
 - get single product
