@@ -94,7 +94,7 @@ DATABASES = {
         'USER': 'shopping_db_user',
         'PASSWORD': 'gbuNAzAccVPjyZtqPESeqj0ki93FPGOe',
         
-        'HOST': 'gbuNAzAccVPjyZtqPESeqj0ki93FPGOe@dpg-cf422dmn6mps0qnc92pg-a',
+        'HOST': 'dpg-cf422dmn6mps0qnc92pg-a',
         'PORT': '5432'
     }
 }
