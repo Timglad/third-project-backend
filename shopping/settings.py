@@ -89,25 +89,25 @@ WSGI_APPLICATION = 'shopping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if 'RENDER' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'shopping_db',
-            'USER': 'shopping_db_user',
-            'PASSWORD': DB_PASSWORD , # 'gbuNAzAccVPjyZtqPESeqj0ki93FPGOe',
-            # 'HOST': 'dpg-cf422dmn6mps0qnc92pg-a',
-            'HOST': 'dpg-cf422dmn6mps0qnc92pg-a.frankfurt-postgres.render.com',        
-            'PORT': '5432',
-        }
+#if 'RENDER' in os.environ:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shopping_db',
+        'USER': 'shopping_db_user',
+        'PASSWORD': 'gbuNAzAccVPjyZtqPESeqj0ki93FPGOe',
+        # 'HOST': 'dpg-cf422dmn6mps0qnc92pg-a',
+        'HOST': 'dpg-cf422dmn6mps0qnc92pg-a.frankfurt-postgres.render.com',        
+        'PORT': '5432',
     }
-else:
-    DATABASES = {
-            'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+#els#
+# DATABASES = {
+#            'default': {
+#            'ENGINE': 'django.db.backends.sqlite3',
+#            'NAME': BASE_DIR / 'db.sqlite3',
+#        }
+#    }
 
 
 

@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
-
 class Command(BaseCommand):
    help = 'Closes the specified poll for voting'
 
@@ -19,10 +18,3 @@ class Command(BaseCommand):
         users = User.objects.all()
         for user in users:
             print(user)
-        if len(users) == 0:
-            print("no users found creating super user")
-            user=User()
-            user.username = 'ran'
-            user.set_password('1234')
-            user.is_superuser(True)
-            user.save()            
