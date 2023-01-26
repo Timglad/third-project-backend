@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e#e@ffr+ej_1hq%li4!w13r0c(k)5p_*j_l8zc)hwvq^17wp!k'
+if 'RENDER' in os.environ:
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    DB_PASSWORD = os.environ.get("DB_PASS") 
+else:
+    SECRET_KEY = 'django-insecure-e#e@ffr+ej_1hq%li4!w13r0c(k)5p_*j_l8zc)hwvq^17wp!k'
+    DB_PASSWORD = ""
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# 'RENDER' not in os.environ
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,12 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product',
     'rest_framework',
+    'whitenoise.runserver_nostatic',
     "corsheaders",
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
@@ -78,12 +89,26 @@ WSGI_APPLICATION = 'shopping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#if 'RENDER' in os.environ:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shopping_db',
+        'USER': 'shopping_db_user',
+        'PASSWORD': 'gbuNAzAccVPjyZtqPESeqj0ki93FPGOe',
+        # 'HOST': 'dpg-cf422dmn6mps0qnc92pg-a',
+        'HOST': 'dpg-cf422dmn6mps0qnc92pg-a.frankfurt-postgres.render.com',        
+        'PORT': '5432',
     }
 }
+#els#
+# DATABASES = {
+#            'default': {
+#            'ENGINE': 'django.db.backends.sqlite3',
+#            'NAME': BASE_DIR / 'db.sqlite3',
+#        }
+#    }
+
 
 
 # Password validation
@@ -134,10 +159,21 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'staticfiles/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "https://shopping-front.onrender.com",
+    
 ]
+
+# if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Turn on WhiteNoise storage backend that takes care of compressing static files
+    # and creating unique names for each version so they can safely be cached forever.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
