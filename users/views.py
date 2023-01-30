@@ -17,3 +17,9 @@ class LoginView(views.APIView):
         login(request, user)
         return Response({'session':request.session.session_key}, status=status.HTTP_202_ACCEPTED)
 
+
+class LogoutView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self, request, format=None):
+        logout(request)
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
