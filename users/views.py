@@ -21,6 +21,9 @@ class LoginView(views.APIView):
 
 class LogoutView(views.APIView):
     permission_classes = (permissions.AllowAny,)
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         logout(request)
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        response = Response(None, status=status.HTTP_204_NO_CONTENT)
+        response.set_cookie('sessionid',max_age=1,samesite='None')
+        response.set_cookie('csrftoken',max_age=1,samesite='None')
+        return response
