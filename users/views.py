@@ -10,6 +10,7 @@ class LoginView(views.APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
+        # x = 1/0
         serializer = serializers.LoginSerializer(data=self.request.data,
             context={ 'request': self.request })
         serializer.is_valid(raise_exception=True)

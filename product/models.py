@@ -12,3 +12,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True,
                               default='/placeholder.png')
 
+
+# class CartItem(models.Model):
+#     product = models.ForeignKey(Product)
+#     quantiy = models.IntegerField()
