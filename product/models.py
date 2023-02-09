@@ -12,3 +12,25 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True,
                               default='/placeholder.png')
 
+
+# class CartItem(models.Model):
+#     user
+#     product = models.ForeignKey(Product)
+#     quantiy = models.IntegerField()
+#     isActiveCart = True
+#     order_id = 
+
+# class Order
+# DateField
+# OrderID
+
+
+# class OrderItem(models.Model)
+#     user
+#     OrderID = 
+#     product = models.ForeignKey(Product)
+#     quantiy = models.IntegerField()
+user order productid quantity
+1     1       2         2
+1  3   1
+1  4   1
