@@ -20,6 +20,6 @@ class LoginView(views.APIView):
 
 class LogoutView(views.APIView):
     permission_classes = (permissions.AllowAny,)
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         logout(request)
         return Response(None, status=status.HTTP_204_NO_CONTENT)
