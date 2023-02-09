@@ -30,7 +30,7 @@ class Product(models.Model):
 #     OrderID = 
 #     product = models.ForeignKey(Product)
 #     quantiy = models.IntegerField()
-user order productid quantity
-1     1       2         2
-1  3   1
-1  4   1
+# user order productid quantity
+# 1     1       2         2
+# 1  3   1
+# 1  4   1
