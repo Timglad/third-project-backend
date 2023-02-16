@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'whitenoise.runserver_nostatic',
     "corsheaders",
-
+    'cart',
 ]
 
 MIDDLEWARE = [
