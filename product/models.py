@@ -4,6 +4,10 @@ from django.db import models
 
 
 class Product(models.Model):
+    class CartStatus(models.TextChoices):
+        ACTIVE = 'A', 'In Cart'
+        NOTACTIVE = 'N', 'Not in Cart'
+
     name = models.CharField(max_length=200)
     description = models.TextField(null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10)
@@ -11,6 +15,7 @@ class Product(models.Model):
     updated = models.DateField(auto_now=True)
     image = models.ImageField(null=True, blank=True,
                               default='/placeholder.png')
+    status = models.CharField(max_length=1, choices=CartStatus.choices, default=CartStatus.NOTACTIVE)
 
 
 
