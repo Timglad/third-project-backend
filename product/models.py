@@ -7,6 +7,8 @@ class Product(models.Model):
     class CartStatus(models.TextChoices):
         ACTIVE = 'A', 'In Cart'
         NOTACTIVE = 'N', 'Not in Cart'
+        ARCHIVED = 'AR' , 'Archived'
+
 
     name = models.CharField(max_length=200)
     description = models.TextField(null=True)
@@ -15,7 +17,7 @@ class Product(models.Model):
     updated = models.DateField(auto_now=True)
     image = models.ImageField(null=True, blank=True,
                               default='/placeholder.png')
-    status = models.CharField(max_length=1, choices=CartStatus.choices, default=CartStatus.NOTACTIVE)
+    status = models.CharField(max_length=2, choices=CartStatus.choices, default=CartStatus.NOTACTIVE)
 
 
 

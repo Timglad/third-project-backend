@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     "corsheaders",
     'cart',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -179,6 +180,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ],
@@ -213,3 +215,4 @@ CORS_ALLOW_ORIGIN = '*'
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_MAX_AGE=87400
+
